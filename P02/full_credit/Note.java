@@ -9,7 +9,6 @@ public class Note
 	public Note()
 	{
 		this.pitch = null;
-		this.octave = 0;
 	}
 	//contructor
 	public Note(Pitch pitch, int octave)
@@ -29,8 +28,24 @@ public class Note
 	@Override 
 	public String toString()
 	{
-		return pitch + "" + octave;
-		
+
+		if (pitch != null)
+		{
+			
+			if (octave != 0)
+			{
+				return pitch + "" + octave;
+			}
+			else
+			{
+				return pitch + "";
+			}
+		}
+			
+		else
+		{
+			return " ";
+		}
 	}
 
 
