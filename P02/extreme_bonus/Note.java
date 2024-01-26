@@ -12,6 +12,8 @@ public class Note
 
 	private String octaveString;
 
+	private static MidiChannel channel;
+
 
 	//default constructor
 	public Note()
@@ -23,7 +25,8 @@ public class Note
 	{
 		this.pitch = pitch;
 		this.octave = octave;
- 
+ 		// this.channel = synth.getChannels()[0];
+
 		//validate octave
 		if(octave <= -5) 
 			octave = -5;
@@ -62,6 +65,11 @@ public class Note
 				octaveString = ("⁴");
 			break;
 		}
+
+		// if(channel == null)
+		// {
+		// 	Synthesizer synth = MidiSystem.getSynthesizer(channel);
+		// }
 	}
 
 	// methods
@@ -85,8 +93,9 @@ public class Note
 		else
 		{
 			return " ";
-		}
+		} 
 	}
+
 
 
 }
