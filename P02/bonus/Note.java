@@ -5,6 +5,8 @@ public class Note
 	//field2: octave
 	private int octave;
 
+	private String octaveString;
+
 	//default constructor
 	public Note()
 	{
@@ -22,7 +24,44 @@ public class Note
 		
 		if(octave >= 4)
 			octave = 4;
+
+		//superscript
+		switch(this.octave)
+		{
+			case -5:
+				octaveString = ("⁻⁵");
+			break;	
+			case -4:
+				octaveString = ("⁻⁴");
+			break;	
+			case -3:
+				octaveString = ("⁻³");
+			break;	
+			case -2:
+				octaveString = ("⁻²");
+			break;	
+			case -1:
+				octaveString = ("⁻¹");
+			break;	
+			case 1:
+				octaveString = ("¹");
+			break;	
+			case 2:
+				octaveString = ("²");
+			break;	
+			case 3:
+				octaveString = ("³");
+			break;	
+			case 4:
+				octaveString = ("⁴");
+			break;
+		}
 	}
+
+
+	
+
+
 
 	// methods
 	@Override 
@@ -34,43 +73,7 @@ public class Note
 
 			if (octave != 0)
 			{
-				return pitch + "" + octave;
-			}
-			else if(octave == -5)
-			{
-				return pitch + "" + "⁻⁵";
-			}
-			else if(octave == -4)
-			{
-				return pitch + "" + "⁻⁴";
-			}
-			else if(octave == -3)
-			{
-				return pitch + "" + "⁻³";
-			}
-			else if(octave == -2)
-			{
-				return pitch + "" + "⁻²";
-			}
-			else if(octave == -1)
-			{
-				return pitch + "" + "⁻¹";
-			}
-			else if(octave == 1)
-			{
-				return pitch + "" + "¹";
-			}
-			else if(octave == 2)
-			{
-				return pitch + "" + "²";
-			}
-			else if(octave == 3)
-			{
-				return pitch + "" + "³";
-			}
-			else if(octave == 4)
-			{
-				return pitch + "" + "⁴";
+				return pitch + "" + octaveString;
 			}
 			else
 			{
