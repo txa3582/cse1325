@@ -36,6 +36,42 @@ public class Note
 			{
 				return pitch + "" + octave;
 			}
+			else if(octave == -5)
+			{
+				return pitch + "" + "⁻⁵";
+			}
+			else if(octave == -4)
+			{
+				return pitch + "" + "⁻⁴";
+			}
+			else if(octave == -3)
+			{
+				return pitch + "" + "⁻³";
+			}
+			else if(octave == -2)
+			{
+				return pitch + "" + "⁻²";
+			}
+			else if(octave == -1)
+			{
+				return pitch + "" + "⁻¹";
+			}
+			else if(octave == 1)
+			{
+				return pitch + "" + "¹";
+			}
+			else if(octave == 2)
+			{
+				return pitch + "" + "²";
+			}
+			else if(octave == 3)
+			{
+				return pitch + "" + "³";
+			}
+			else if(octave == 4)
+			{
+				return pitch + "" + "⁴";
+			}
 			else
 			{
 				return pitch + "";
