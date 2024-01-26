@@ -1,3 +1,8 @@
+import javax.sound.midi.MidiSystem;
+import javax.sound.midi.Synthesizer;
+import javax.sound.midi.MidiChannel;
+import javax.sound.midi.MidiUnavailableException;
+
 public class Note
 {
 	//field1: pitch enum

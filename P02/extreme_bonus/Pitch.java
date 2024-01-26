@@ -6,18 +6,22 @@ public enum Pitch
 	private String pitch;
 
 	private int value;
-	//constructor
+	//constructors
 	private Pitch(String pitch)
 	{
 		this.pitch = pitch;	
 		this.value = 60;
 	}
+
 	//methods
 	@Override
 	public String toString()
 	{
 		return pitch;
 	}
-
+	public int toValue()
+	{
+		return value;
+	}
 		 
 }
