@@ -1,3 +1,5 @@
+import javax.sound.midi.MidiUnavailableException;
+
 public class Song {
     public static void main(String[] args) {
         Note pause = new Note();
@@ -14,6 +16,7 @@ public class Song {
         };
         for(Note note : song) {
             System.out.print(note + " ");
+			note.play();
         }
         System.out.println();
     }
