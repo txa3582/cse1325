@@ -1,7 +1,7 @@
 import javax.sound.midi.MidiUnavailableException;
 
 public class Song {
-    public static void main(String[] args) {
+    public static void main(String[] args), throw InterruptedException, throw MidiUnavailableException{
         Note pause = new Note();
         Note gb = new Note(Pitch.Gb, 0);
         Note g  = new Note(Pitch.G, 0);

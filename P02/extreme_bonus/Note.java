@@ -19,15 +19,20 @@ public class Note
 	public Note()
 	{
 		this.pitch = null;
-		Note.channel = null;
 	}
 	//contructor
 	public Note(Pitch pitch, int octave)
 	{
 		this.pitch = pitch;
 		this.octave = octave;
-		Note.channel = synth.getChannels()[0];
- 		// this.channel = synth.getChannels()[0];
+
+		if(channel == null)
+		{
+			Synthesizer synth = MidiSystem.getSynthesizer();
+			
+			Note.channel = synth.getChannels()[0];
+		}
+
 
 		//validate octave
 		if(octave <= -5) 
@@ -68,11 +73,6 @@ public class Note
 			break;
 		}
 
-		if(channel == null)
-		{
-			Synthesizer synth = MidiSystem.getSynthesizer();
-			open();
-		}
 	}
 
 	// methods
@@ -99,6 +99,10 @@ public class Note
 		} 
 	}
 
+	public void Play()
+	{
+		channel.noteOn(this.pitch + 12*octave, 50);	
+	}
 
 
 }
