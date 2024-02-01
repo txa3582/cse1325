@@ -4,7 +4,27 @@ public class Customer
 	public Customer(String name, String email)
 	{
 		this.name = name;
-		this.email = email;
+
+
+		String emailCheck = email.substring('@');
+
+		if (email.contains(String.valueOf("@")))
+		{
+			if(emailCheck.contains(String.valueOf(".")))
+			{
+				this.email = email;
+			}
+			else
+			{
+				
+				throw new IllegalArgumentException("Invalid email address");
+			}
+		}
+		else
+		{
+			throw new IllegalArgumentException("Invalid email address");
+		}
+
 
 	}
 
