@@ -11,17 +11,12 @@ public class Product
 	}
 
 	public int getstockNumber()
-	{
-		Integer[] UPC;
-		UPC = new Integer[11];
+	{	
+	
+		nextStockNumber = (int) (100000000000.0 * Math.random()); 
 
-		for(int i = 0; i<UPC.length; ++i)
-		{
-			UPC[i] = (int) (100.0 * Math.random()); 
-		}
+		return nextStockNumber;
 
-		
-		
 	}
 	public int getPrice()
 	{
