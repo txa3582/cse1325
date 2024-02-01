@@ -12,10 +12,20 @@ public class Product
 
 	public int getstockNumber()
 	{
-	
+		Integer[] UPC;
+		UPC = new Integer[11];
+
+		for(int i = 0; i<UPC.length; ++i)
+		{
+			UPC[i] = (int) (100.0 * Math.random()); 
+		}
+
+		
+		
 	}
 	public int getPrice()
 	{
+		
 	}
 	//methods
 	@Override
@@ -24,7 +34,8 @@ public class Product
 
 	}
 	//fields
-	private int nextstockNumber;
+	private int nextStockNumber;
+	private int stockNumber;
 	private String name;
 	private int price;
 
