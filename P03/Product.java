@@ -6,17 +6,9 @@ public class Product
 		//validate price
 		if(price < 0) throw new IllegalArgumentException("Invalid price " + name + ":" + price);
 
-		nextStockNumber = (int) (100000000000.0 * Math.random()); 
-
-		// Integer[] UPC;
-		// UPC = new Integer[11];
-
-
-		// for(int i = 0; i<UPC.length; ++i)
-		// {
-		// 	UPC[i] = (int) (100.0 * Math.random()); 
-		// }
-		//
+		stockNumber = 0;
+		nextStockNumber = stockNumber;
+		stockNumber = nextStockNumber++;
 
 		this.name = name;
 		this.price = price;
@@ -24,7 +16,7 @@ public class Product
 
 	public int getstockNumber()
 	{	
-		return '0' + nextStockNumber;
+		return stockNumber;
 	}
 	public int getPrice()
 	{
