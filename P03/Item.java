@@ -17,7 +17,7 @@ public class Item
 		String quantityFormatted = String.format("%3d", quantity); 
 		String productFormatted = String.format("%-40s", product);	
 		String itemPriceFormatted = String.format("$%05, 2f", itemPrice);
-		return quantityFormatted + " " + productFormatted + itemPriceFormatted;
+		return quantityFormatted + " " + productFormatted + " " + itemPriceFormatted;
 	}
 	//fields
 	private Product product;

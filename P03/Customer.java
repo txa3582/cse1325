@@ -8,9 +8,9 @@ public class Customer
 
 		String emailCheck = email.substring('@');
 
-		if (email.contains(String.valueOf("@")))
+		if (email.contains(String.valueOf('@')))
 		{
-			if(emailCheck.contains(String.valueOf(".")))
+			if(emailCheck.contains(String.valueOf('.')))
 			{
 				this.email = email;
 			}
@@ -28,20 +28,10 @@ public class Customer
 
 	}
 
-	public Customer(BufferedReader br)
-	{
-
-	}
-
-	public save(BufferedWriter bw)
-	{
-
-	}
-
 	@Override
 	public String toString()
 	{
-
+		return name + "(" + email + ")";	
 	}
 
 	// fields
