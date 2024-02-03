@@ -6,8 +6,6 @@ public class Product
 		//validate price
 		if(price < 0) throw new IllegalArgumentException("Invalid price " + name + ":" + price);
 
-		stockNumber = 0;
-		nextStockNumber = stockNumber;
 		stockNumber = nextStockNumber++;
 
 		this.name = name;
@@ -31,8 +29,8 @@ public class Product
 		return name + priceFormatted;
 	}
 	//fields
-	private int nextStockNumber;
-	private int stockNumber;
+	private static int nextStockNumber = 0;
+	private int stockNumber = 0;
 	private String name;
 	private int price;
 
