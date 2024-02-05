@@ -4,7 +4,7 @@ public class Product
 	public Product(String name, int price)
 	{
 		//validate price
-		if(price < 0) throw new IllegalArgumentException("Invalid price " + name + ":" + price);
+		if(price < 0) throw new IllegalArgumentException("Invalid price of " + name + ":" + price);
 
 		stockNumber = nextStockNumber++;
 
