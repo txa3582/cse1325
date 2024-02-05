@@ -24,9 +24,10 @@ public class Product
 	@Override
 	public String toString()
 	{
-		name = String.format("$-30s",name);
-		String priceFormatted = String.format("$%, 2f", price);
-		return name + priceFormatted;
+		name = String.format("%-30s",name);
+		double priceConverted = price/100.0;
+		String priceFormatted = String.format("$%,.2f", priceConverted);
+		return name + "" + priceFormatted;
 	}
 	//fields
 	private static int nextStockNumber = 0;

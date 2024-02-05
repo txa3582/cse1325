@@ -18,8 +18,14 @@ public class TestProduct
 		if(testPrice != 1111)
 			System.err.println("FAIL: getPrice is not returning the correct the price");
 		//Test3
-
+		String testString = product1.toString();
+		System.out.println("" + testString);
 		//Test4
+		// Product productNeg = new Product("test name", -1111);
+		// int testNegPrice = productNeg.getPrice();
+
+
+		
 		// if(Product.getPrice() < 0) throw IllegalArgumentException("");
 	}
 }
