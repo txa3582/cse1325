@@ -65,9 +65,5 @@ public class TestProduct
 		{ 
 			System.exit(0);
 		}
-
-
-		
-		// if(Product.getPrice() < 0) throw IllegalArgumentException("");
 	}
 }
