@@ -18,7 +18,7 @@ public class Product
 	}
 	public int getPrice()
 	{
-		return price;	
+		return this.price;	
 	}
 	//methods
 	@Override

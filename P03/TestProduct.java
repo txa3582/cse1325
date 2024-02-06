@@ -30,29 +30,30 @@ public class TestProduct
 		String testString = product1.toString();
 		System.out.println("" + testString);
 		//Test4
-		Product productNeg = new Product("test name", -1111);
-		int testNegPrice = productNeg.getPrice();
 		
+		boolean exceptionThrown = false;
+
 		try
 		{
-			System.out.println("" + testNegPrice);
+			
+			Product productNeg = new Product("test name", -1111);
+			productNeg.getPrice();
 		}
 		catch(IllegalArgumentException e)
 		{
-
-			System.err.println("" + testNegPrice);
-
-			if(e.getMessage().isEmpty() || testNegPrice < 0)
-			{
-				System.err.println("FAIL: IllegalArguementException for negative price not being caught");
-			}
+			exceptionThrown = true;
 		}
 		catch(Exception misc)
 		{
 
 			System.err.println(misc.getMessage());
-			System.err.println("FAIL: More than the expected Exception was caught");
-			
+			System.err.println("FAIL: An unexpected Exception was caught");
+
+			error++;
+		}
+		if(exceptionThrown == false)
+		{
+			System.err.println("FAIL: No exception was thrown for negative price");
 			error++;
 		}
 		if(error != 0)
