@@ -1,6 +1,6 @@
 package store;
 
-public class Product
+public abstract class Product
 {
 	//constructors
 	public Product(String name, int price)
