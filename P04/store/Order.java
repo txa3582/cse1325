@@ -1,19 +1,25 @@
 package store;
 
+import java.util.ArrayList;
+
 public class Order 
 {
     public Order(Customer customer)
     {
+        this.orderNumber = nextOrderNumber++;
 
+        this.items = new ArrayList<>();
     }
     //methods
-    public addItem(Item item)
+    public Item addItem(Item item)
     {
-        
+        items.add(item);
+        return item;
     }
-    getPrice()
+    int getPrice()
     {
-        
+        int sum = items.getPrice();
+        return sum;
     }
     @Override
     public String toString() 
@@ -22,8 +28,9 @@ public class Order
     }
 
     //fields
-    private static int nextOrderNumber;
-    private Item item[];
+    private static int nextOrderNumber = 0;
+    private int orderNumber;
+    private  ArrayList<Item> items;
     private Customer customer;
 
 }
