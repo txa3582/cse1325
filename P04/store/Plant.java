@@ -5,7 +5,7 @@ public class Plant extends Product
 
     public Plant(String species, int price, Exposure exposure)
     {
-        super(species, price);
+        super("Plant: " + species, price);
 
         this.exposure = exposure;
     }

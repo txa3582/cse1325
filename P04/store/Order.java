@@ -18,13 +18,21 @@ public class Order
     }
     int getPrice()
     {
-        int sum = items.getPrice();
+        int sum = 0;
+        for(int i = 0; i<items.size(); ++i)
+        {
+            int itemPrice = items.get(i).getPrice();
+            sum = sum + itemPrice;
+        }
         return sum;
     }
     @Override
     public String toString() 
     {
-        
+        return "Order #" + orderNumber + " for " + customer.toString()
+        + items.toString()
+        + "Order Total $ " + getPrice();
+ 
     }
 
     //fields
