@@ -2,9 +2,9 @@ package store;
 
 public enum Exposure
 {
-    SHADE, PARTSUN, SUN;
+    SHADE("full shade"), PARTSUN("part shade"), SUN("full sun");
 
-
+    
     @Override
     public String toString()
     {
