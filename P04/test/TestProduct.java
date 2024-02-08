@@ -2,6 +2,7 @@ package test;
 
 import store.Product;
 import store.Tool;
+import store.Exposure;
 import store.Plant;
 public class TestProduct
 {
@@ -10,7 +11,7 @@ public class TestProduct
 
 		//Test1
 		Tool product1 = new Tool("test name", 1111);
-		Tool product2 = new Tool("test name", 2222);
+		Plant product2 = new Plant("Sunflower", 2222, Exposure.SUN);
 		int testStock1 = product1.getStockNumber();	
 		int testStock2 = product2.getStockNumber();
 		int error = 0;

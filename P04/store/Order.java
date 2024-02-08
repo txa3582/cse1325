@@ -26,16 +26,14 @@ public class Order
     }
     //methods
     /**
-     * Creates an Item instance and appends it to the ArrayList Items.
+     * Appends item to the ArrayList Items.
      * 
-     * @param item          the item          
-     * @return              the item
+     * @param item          the item 
      * @since               0.2
      */
-    public Item addItem(Item item)
+    public void addItem(Item item)
     {
         items.add(item);
-        return item;
     }
     /**
      * Calculates the total price of all items in the order.

@@ -1,31 +1,21 @@
 package store;
 
+//public static final string array
+
 public enum Exposure
 {
-    SHADE
-    {   
-        @Override
-        public String toString()
-        {
-            return "full shade";
-        }
-    }, 
-    PARTSUN
-    {
-        @Override
-        public String toString()
-        {
-            return "part shade";
-        }
-    }, 
-    SUN
-    {
-        @Override
-        public String toString()
-        {
-            return "full sun";
-        }
-    };
+    SHADE("full sun"), PARTSUN("part sun"), SUN("full sun");
     
+    private Exposure(String exposure)
+    {
+	this.exposure = exposure;
+    }
+    @Override
+    public String toString()
+    {
+        return exposure;	
+    } 
+
+    private String exposure;
 
 }
