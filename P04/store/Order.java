@@ -23,6 +23,7 @@ public class Order
         this.orderNumber = nextOrderNumber++;
 
         this.items = new ArrayList<>();
+        this.customer = customer;
     }
     //methods
     /**
@@ -60,16 +61,23 @@ public class Order
     @Override
     public String toString() 
     {
-        return "Order #" + orderNumber + " for " + customer.toString()
-        + items.toString()
-        + "Order Total $ " + getPrice();
+        StringBuilder itemsBuild = new StringBuilder();
+        for(int i = 0; i<items.size(); i++)
+        {
+            itemsBuild.append(items.get(i));
+        }
+        int totalPrice = getPrice();
+
+        String totalPriceFormatted = String.format("$ %5d.%02d", totalPrice/100, totalPrice%100);
+        return "Order #" + orderNumber + " for " + customer.toString() + "\n"
+        + itemsBuild + "\n" + "Order Total " + totalPriceFormatted + "\n";
  
     }
 
     //fields
-    private static int nextOrderNumber = 0;
+    private static int nextOrderNumber = 1;
     private int orderNumber;
-    private  ArrayList<Item> items;
+    private ArrayList<Item> items;
     private Customer customer;
 
 }

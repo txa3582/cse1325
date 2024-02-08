@@ -15,11 +15,9 @@ public class Item
 	@Override
 	public String toString()
 	{
-		int itemPrice = getPrice();
-		String quantityFormatted = String.format("%3d", quantity); 
-		String productFormatted = String.format("%-40s", product);	
-		String itemPriceFormatted = String.format("$%05, 2f", itemPrice);
-		return quantityFormatted + " " + productFormatted + " " + itemPriceFormatted;
+		int price = getPrice();
+		String itemFormat = String.format("%3d %-40s $ %5d.%02d", quantity, product, price/100, price%100);
+		return itemFormat + "\n";
 	}
 	//fields
 	private Product product;

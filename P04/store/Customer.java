@@ -5,35 +5,23 @@ public class Customer
 	//constructors
 	public Customer(String name, String email)
 	{
+		
+
+
+		int at = email.indexOf("@");
+		int dot = email.indexOf(".", at+1);
+
+		if(at < 0 || dot < 0)
+			throw new IllegalArgumentException("Invalid email address: " + email);
+		this.email = email;
 		this.name = name;
-
-
-		String emailCheck = email.substring('@');
-
-		if (email.contains(String.valueOf('@')))
-		{
-			if(emailCheck.contains(String.valueOf('.')))
-			{
-				this.email = email;
-			}
-			else
-			{
-				
-				throw new IllegalArgumentException("Invalid email address");
-			}
-		}
-		else
-		{
-			throw new IllegalArgumentException("Invalid email address");
-		}
-
 
 	}
 
 	@Override
 	public String toString()
 	{
-		return name + "(" + email + ")";	
+		return name + " (" + email + ")";	
 	}
 
 	// fields
