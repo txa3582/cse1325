@@ -34,7 +34,12 @@ public class TestProduct
 		}
 		//Test3
 		String testString = product1.toString();
-		System.out.println("" + testString);
+		String testStringExpected =	"test name                     $11.11";
+		if(!testString.equals(testStringExpected))
+		{
+			System.err.println("FAIL: Product toString() not working correctly");
+			error++;
+		}
 		//Test4
 		
 		boolean exceptionThrown = false;
