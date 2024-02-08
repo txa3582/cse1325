@@ -42,7 +42,7 @@ public class Order
      * @return              the sum of all the items
      * @since               0.2
      */
-    int getPrice()
+    public int getPrice()
     {
         int sum = 0;
         for(int i = 0; i<items.size(); ++i)

@@ -1,8 +1,23 @@
 package store;
-
+/**
+ * Holds the Product info.
+ * 
+ * @author          Thomas Anderson
+ * @version         0.2
+ * @since           0.2
+ */
 public abstract class Product
 {
 	//constructors
+	/**
+	 * Creates a name and price instance.
+	 * 
+	 * @author          Thomas Anderson
+	 * @param name		the product's name
+	 * @param price		the product's price
+	 * @version         0.2
+	 * @since           0.1
+	 */
 	public Product(String name, int price)
 	{
 		//validate price
@@ -13,16 +28,40 @@ public abstract class Product
 		this.name = name;
 		this.price = price;
 	}
-
+	/**
+	 * Gets the stock number for that product.
+	 * 
+	 * @author          Thomas Anderson
+	 * @return			the stocknumber of the product
+	 * @version         0.2
+	 * @since           0.1
+	 */
 	public int getStockNumber()
 	{	
 		return this.stockNumber;
 	}
+	/**
+	 * Gets the price of the product.
+	 * 
+	 * @author          Thomas Anderson
+	 * @return			the price of the product
+	 * @version         0.2
+	 * @since           0.1
+	 */
 	public int getPrice()
 	{
 		return this.price;	
 	}
 	//methods
+
+	/**
+	 * Converts the product's name and price into a formatted string.
+	 * 
+	 * @author          Thomas Anderson
+	 * @return			the product's name and the price formatted.
+	 * @version         0.2
+	 * @since           0.1
+	 */
 	@Override
 	public String toString()
 	{
