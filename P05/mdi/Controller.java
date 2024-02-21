@@ -1,8 +1,18 @@
-import store.;
+import store.Customer;
+import store.Store;
+import store.Order;
 public class Controller
 {
     public Controller(String storeName)
     {
+        this.store = store;
+        this.view = view;
+        this.in = in;
+        this.isRunning = isRunning;
+        this.output = output;
+        this.mainMenu = mainMenu;
+
+        // load menuItem instances into menu field / setup main menu
 
     }
     public void mdi()
@@ -13,9 +23,9 @@ public class Controller
         }
     }
 
-    private exit()
+    private void exit()
     {
-
+        isRunning = false;
     }
     private placeOrder()
     {
