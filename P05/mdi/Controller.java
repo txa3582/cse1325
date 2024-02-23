@@ -1,3 +1,7 @@
+import java.util.Scanner;
+
+import javax.swing.text.View;
+
 import store.Customer;
 import store.Store;
 import store.Order;
@@ -19,7 +23,12 @@ public class Controller
     {
         while(isRunning == true)
         {
-            
+            selectFromMenu();
+            for(int i = 0; i <= 20; i++)
+            {
+                print("\n");
+            }
+            Menu.run();
         }
     }
 
@@ -44,6 +53,39 @@ public class Controller
 
     }
     private switchView()
+    {
+
+    }
+    private String getView()
+    {
+
+    }
+    private int selectFromMenu()
+    {
+        for(int i = 0; i <= 20; i++)
+            {
+                print("\n");
+            }
+        print("Main Menu");
+        getInt(output);
+    }
+    private void print(String s)
+    {
+        
+    }
+    private String getString(String prompt)
+    {
+        print(prompt);
+        
+        String input = in.nextLine();
+        
+        return input.trim();
+    }
+    private int getInt(String prompt)
+    {
+        return 
+    }
+    private double getDouble(String prompt)
     {
 
     }

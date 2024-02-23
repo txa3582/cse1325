@@ -9,6 +9,8 @@ public class Store
     {
         this.customers = new ArrayList<>();
         this.products = new ArrayList<>();
+        this.orders = new ArrayList<>();
+        this.name = name;
     }
     public String getName()
     {
@@ -28,9 +30,9 @@ public class Store
         }
         return "" + customersBuild;
     }   
-    public getProduct(Product product)
+    public void addProduct(Product product)
     {
-        return products.add(product);
+        products.add(product);
     }
     public String getProductList()
     {
@@ -43,20 +45,25 @@ public class Store
     }
     public int newOrder(int customer)
     {
-        Order newOrder = new Order(null);
+        Customer newCustomer = new Customer();  
+        Order newOrder = new Order(customer);
 
         orders.add(newOrder);
-        // ????
-        // return ; 
+        return orders.indexOf(newOrder);
     }
-    public addToOrder(int order, int product, int quantity)
+    public void addToOrder(int order, int product, int quantity)
     {
-        // ????
-        orders.add()
+        Item newItem = new Item(product, quantity);
+        order.addItem(newItem); 
     }
     public String getOrderList()
     {
-        // ????
+        StringBuilder ordersBuild = new StringBuilder();
+        for(int i = 0; i < orders.size(); i++)
+        {
+            ordersBuild.append(orders.get(i));
+        }
+        return "" + ordersBuild;
     }
 
     // fields
