@@ -14,22 +14,29 @@ public class Controller
         this.in = in;
         this.isRunning = isRunning;
         this.output = output;
-        this.mainMenu = mainMenu;
 
+        mainMenu = new Menu();
         // load menuItem instances into menu field / setup main menu
 
     }
     public void mdi()
     {
-        while(isRunning == true)
+        int selected;
+        try
         {
-            selectFromMenu();
-            for(int i = 0; i <= 20; i++)
+            while(isRunning == true)
             {
-                print("\n");
+                selected = selectFromMenu();
+                for(int i = 0; i <= 20; i++)
+                {
+                    print("\n");
+                }
+                int s = getInt(output)
+                mainMenu.run(selected);
             }
-            Menu.run();
         }
+        catch (Exception e){}
+        
     }
 
     private void exit()
@@ -40,9 +47,10 @@ public class Controller
     {
 
     }
-    private newCustomer()
+    private void newCustomer()
     {
-
+        
+        switchView(customers);
     }
     private newTool()
     {
@@ -52,13 +60,13 @@ public class Controller
     {
 
     }
-    private switchView()
+    private void switchView()
     {
-
+        
     }
     private String getView()
     {
-
+        return view.toString();
     }
     private int selectFromMenu()
     {
@@ -67,27 +75,70 @@ public class Controller
                 print("\n");
             }
         print("Main Menu");
-        getInt(output);
+        return getInt(output);
     }
     private void print(String s)
     {
-        
+        output.concat(s);
     }
     private String getString(String prompt)
     {
         print(prompt);
+        String input;
+        String inputTrimmed;
         
-        String input = in.nextLine();
-        
-        return input.trim();
+
+        while (true) 
+        {
+            
+            try
+            {
+                input = in.nextLine();
+                inputTrimmed = input.trim();
+                break;
+            }
+            catch(Exception e)
+            {
+                System.err.println("Invalid input!");
+            }
+        }
+        return inputTrimmed;
     }
     private int getInt(String prompt)
     {
-        return 
+        int userInt;
+        while (true) 
+        {
+            try
+            {
+                userInt = Integer.parseInt(getString(prompt));
+                userInt = Integer.valueOf(userInt);
+                break;
+            }
+            catch(Exception e)
+            {
+                System.err.println("Invalid input!");
+            }
+        }
+        return userInt;
     }
     private double getDouble(String prompt)
     {
-
+        double userDouble;
+        while (true) 
+        {
+            try
+            {
+                userDouble = Double.parseDouble(getString(prompt));
+                userDouble = Double.valueOf(userDouble);
+                break;
+            }
+            catch(Exception e)
+            {
+                System.err.println("Invalid input!");
+            }
+        }
+        return userDouble;
     }
     //fields
     private Store store;
