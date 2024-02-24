@@ -45,16 +45,19 @@ public class Store
     }
     public int newOrder(int customer)
     {
-        Customer newCustomer = new Customer();  
-        Order newOrder = new Order(customer);
+        Customer newCustomer = customers.get(customer);
+        Order newOrder = new Order(newCustomer);
 
         orders.add(newOrder);
         return orders.indexOf(newOrder);
     }
     public void addToOrder(int order, int product, int quantity)
     {
-        Item newItem = new Item(product, quantity);
-        order.addItem(newItem); 
+        Order addOrder = orders.get(order);
+        Product addProduct = products.get(product);
+
+        Item newItem = new Item(addProduct, quantity);
+        addOrder.addItem(newItem);
     }
     public String getOrderList()
     {
