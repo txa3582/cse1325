@@ -1,12 +1,26 @@
+package mdi;
+
 import java.util.Scanner;
 
 import javax.swing.text.View;
 
 import store.Customer;
+import store.Exposure;
 import store.Store;
+import store.Tool;
 import store.Order;
+import store.Item;
+import store.Plant;
 public class Controller
 {
+    //fields
+    private Store store;
+    private View view;
+    private Menu mainMenu;
+    private String output;
+    private boolean isRunning;
+    private Scanner in;
+
     public Controller(String storeName)
     {
         this.store = store;
@@ -49,20 +63,44 @@ public class Controller
     }
     private void newCustomer()
     {
-        
+        print("Enter name: \n");
+        String name = getString(output);
+        print("Enter email: \n");
+        String email = getString(output);
+        Customer newCustomer = new Customer(name, email);
+
         switchView(customers);
     }
-    private newTool()
+    private void newTool()
     {
-
+        print("Enter name: \n");
+        String name = getString(output);
+        print("Enter price: \n");
+        String price = getString(output);
+        int priceInt = getInt(price);
+        Tool newTool = new Tool(name, priceInt);
+        
+        switchView(Tool);
     }
-    private newPlant()
+    private void newPlant()
     {
-
+        print("Enter name: \n");
+        String name = getString(output);
+        print("Enter price: \n");
+        String price = getString(output);
+        Exposure values = Exposure.values();
+        int priceInt = getInt(price);
+        
+        print("Enter exposure: \n");
+        String exposure = getString(output);
+        
+        Plant newPlant = new Plant(name, priceInt, );
+        
+        switchView(products);
     }
     private void switchView()
     {
-        
+
     }
     private String getView()
     {
@@ -140,13 +178,7 @@ public class Controller
         }
         return userDouble;
     }
-    //fields
-    private Store store;
-    private View view;
-    private Menu mainMenu;
-    private String output;
-    private boolean isRunning;
-    private Scanner in;
+
 
 
 }
