@@ -9,7 +9,7 @@ package store;
  */
 public enum Exposure
 {
-    SHADE("full sun"), PARTSUN("part sun"), SUN("full sun");
+    SHADE("full shade"), PARTSUN("part sun"), SUN("full sun");
     
     private Exposure(String exposure)
     {

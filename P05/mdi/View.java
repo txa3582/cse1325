@@ -2,5 +2,9 @@ package mdi;
 
 public enum View
 {
-    customers, products, orders
+    CUSTOMERS, 
+    PRODUCTS, 
+    ORDERS
+
+
 }
