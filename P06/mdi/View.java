@@ -1,7 +1,5 @@
 package mdi;
 
-import store.Store;
-
 public enum View 
 {
     CUSTOMERS, ORDERS, PRODUCTS;

@@ -3,15 +3,12 @@ package mdi;
 import store.Store;
 import java.util.Scanner;
 
-import javax.swing.text.View;
 
 
 import store.Customer;
 import store.Exposure;
 
 import store.Tool;
-import store.Order;
-import store.Item;
 import store.Plant;
 import store.Product;
 
@@ -68,125 +65,109 @@ public class Controller
     {
         isRunning = false;
     }
-    private void placeOrder()
+    private void placeOrder() 
     {
-        String cList = store.getCustomerList();
-
-        // Order newOrder = new store.newOrder();
-
+        System.out.println("\nPlacing an Order\n----------------\n");
+        int customer = getInt("\n" + store.getCustomerList() + "\nWhich Customer? ");
+        if(customer < 0) return;
+        int order = store.newOrder(customer);
+        while(true) {
+            int product = getInt("\n" + store.getProductList() 
+                               + "\nWhich Product (-1 to complete order)? ");
+            if(product < 0) break;
+            int quantity = getInt("How many (-1 to select a different product)? ");
+            if(quantity < 0) continue;
+            store.addToOrder(order, product, quantity);
+        }
+        print("Created order " + order);
+        view = mdi.View.ORDERS;
     }
-    private void newCustomer()
+    private void newCustomer() 
     {
-        try
-        {
-            print("Enter name: \n");
-            String name = getString(output);
-            print("Enter email: \n");
-            String email = getString(output);
-            Customer newCustomer = new Customer(name, email);
-            store.addCustomer(newCustomer);
-
-            switchView();
-            print("Added customer successfully!");
-        }
-        catch(Exception e)
-        {
-            System.err.println("Failed to add new customer");
-        }
+        System.out.println("\nDefining a new Customer\n-----------------------\n");
+        String name = getString("New Customer's name:  ");
+        String email = getString("New Customer's email: ");
+        Customer customer = new Customer(name, email);
+        store.addCustomer(customer);
+        print("Created new Customer: " + customer);
+        view = mdi.View.CUSTOMERS; 
     }
-    private void newTool()
+    private void newTool() 
     {
-        try
-        {
-            print("Enter name: \n");
-            String name = getString(output);
-            print("Enter price: \n");
-            String price = getString(output);
-            int priceInt = getInt(price);
-            Tool newTool = new Tool(name, priceInt);
-            store.addProduct(newTool);
-            
-            print("Added tool successfully!");
-            switchView();
-        }
-        catch(Exception e)
-        {
-            System.err.println("Failed to add new tool");
-        }
+        System.out.println("\nDefining a new Tool\n-------------------\n");
+        String name = getString("New Tool's name:  ");
+        double price = getDouble("New Tool's price: ");
+        Tool tool = new Tool(name, (int) (price * 100));
+        store.addProduct(tool);
+        print("Created new Tool: " + tool);
+        view = mdi.View.PRODUCTS; 
+    }
+    private void newPlant() 
+    {
+        System.out.println("\nDefining a new Plant\n-------------------\n");
+        String name = getString("New Plant's name:  ");
         
-    }
-    private void newPlant()
-    {
-        try
-        {
-            print("Enter name: \n");
-            String name = getString(output);
-            print("Enter price: \n");
-            String price = getString(output);
-            int priceInt = getInt(price);
-    
-            Exposure exposure[] = Exposure.values();
-            print("Enter exposure 1 = FULLSUN, 2 = PARTSUN and 3 = FULLSHADE \n");
-            String exposureString = getString(output);
-            int exposureInt = getInt(exposureString);
-            Exposure exposureChoice = exposure[exposureInt];
-    
-            Plant newPlant = new Plant(name, priceInt, exposureChoice);
-            store.addProduct(newPlant);
+        Exposure exposure = null;
+        try {
+            System.out.println();
+            for(Exposure ex : Exposure.values())
+                System.out.println(ex.ordinal() + "] " + ex);
+            int selection = getInt("\nNew Plant's exposure? ");
+            exposure = Exposure.values()[selection];
+        } catch(ArrayIndexOutOfBoundsException e) {
+            throw new ArrayIndexOutOfBoundsException("Invalid Exposure");
+        }
 
-            print("Added plant successfully!");
-            
-            switchView();
-        }
-        catch(Exception e)
-        {
-            System.err.println("Failed to add new plant");
-        }
-        
+        double price = getDouble("New Plant's price: ");
+        Plant plant = new Plant(name, (int) (price * 100), exposure);
+        store.addProduct(plant);
+        print("Created new Plant: " + plant);
+        view = mdi.View.PRODUCTS; 
     }
+
     private void switchView() 
     {
         System.out.println("\nSwitching View\n--------------\n");
-        for(View view : View.values())
+        for(mdi.View view : mdi.View.values())
             System.out.println(view.ordinal() + "] " + view);
         int selection = getInt("\nSelection? ");
-        view = View.values()[selection];
+        view = mdi.View.values()[selection];
         print("Switched view to " + view);
     }
     private String getView() 
     {
         String result = "INVALID VIEW";
-        if(view == View.CUSTOMERS) result = store.getCustomerList();
-        if(view == View.PRODUCTS)  result = store.getProductList();
-        if(view == View.ORDERS)    result = store.getOrderList();
+        if(view == mdi.View.CUSTOMERS) result = store.getCustomerList();
+        if(view == mdi.View.PRODUCTS)  result = store.getProductList();
+        if(view == mdi.View.ORDERS)    result = store.getOrderList();
         return result;
     }
-    private int selectFromMenu()
-    {
-        for(int i = 0; i <= 20; i++)
-            {
-                print("\n");
-            }
-        print(store + " Main Menu" + '\n' + mainMenu);
+    private static final String clearScreen = "\n".repeat(255);
+    private Integer selectFromMenu() {
+        System.out.println(clearScreen 
+                         + store.getName() + " Main Menu\n\n" 
+                         + mainMenu + '\n' 
+                         + getView() + '\n'
+                         + output + '\n');
+        output = "";
         return getInt("Selection? ");
     }
+    
     private void print(String s)
     {
         output.concat(s);
     }
     private String getString(String prompt)
     {
-        print(prompt);
-        String input;
+        
         String inputTrimmed;
 
         while (true) 
         {
-            
             try
             {
-                input = in.nextLine();
-                inputTrimmed = input.trim();
+                System.out.print(prompt);
+                inputTrimmed = in.nextLine().trim();
 
                 return inputTrimmed;
             }
@@ -197,41 +178,40 @@ public class Controller
         }
         
     }
-    private int getInt(String prompt)
+    private Integer getInt(String prompt) 
     {
-        int userInt;
-        while (true) 
-        {
-            try
+        Integer i = null;
+        while(true) {
+            try 
             {
-                userInt = Integer.parseInt(getString(prompt));
-
-                return userInt;
-            }
-            catch(Exception e)
+                String s = getString(prompt);
+                if(s != null && !s.isEmpty()) i = Integer.parseInt(s);
+                break;
+            } 
+            catch(Exception e) 
             {
                 System.err.println("Invalid input!");
             }
         }
-        
+        return i;
     }
-    private double getDouble(String prompt)
+    private Double getDouble(String prompt) 
     {
-        double userDouble;
-        while (true) 
+        Double d = null;
+        while(true) 
         {
-            try
+            try  
             {
-                userDouble = Double.parseDouble(getString(prompt));
-
-                return userDouble;
-            }
-            catch(Exception e)
+                String s = getString(prompt);
+                if(s != null && !s.isEmpty()) d = Double.parseDouble(s);
+                break;
+            } 
+            catch(Exception e) 
             {
                 System.err.println("Invalid input!");
             }
         }
-        
+        return d;
     }
 
 
