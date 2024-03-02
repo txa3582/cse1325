@@ -17,15 +17,33 @@ public class Store
     }
     public Store(BufferedReader br) throws IOException
     {
-        int size = Integer.parseInt(br.readLine());
-        this.customers = new ArrayList<>();
+        try
+        {
+            int size = Integer.parseInt(br.readLine());
+            this.customers = new ArrayList<>();
 
-        while(size-- > 0) customers.add(new Customer(br));
+            while(size-- > 0) customers.add(new Customer(br));
+        }
+        catch(Exception e)
+        {
+            System.err.println("Failed to read: " + e);
+        }
+        
+
+        
     }
     public void save(BufferedWriter bw) throws IOException
     {
-        bw.write("" + customers.size() + '\n');
-        for(Customer i : customers) i.save(bw);
+        try
+        {
+            bw.write("" + customers.size() + '\n');
+            for(Customer i : customers) i.save(bw);
+        }
+        catch(Exception e)
+        {
+            System.err.println("Failed to save: " + e);
+        }
+        
     }   
     public String getName()
     {
