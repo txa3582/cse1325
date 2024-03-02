@@ -1,7 +1,5 @@
 package mdi;
 
-import java.util.Scanner;
-
 import store.Store;
 import store.Customer;
 import store.Exposure;
@@ -9,7 +7,15 @@ import store.Tool;
 import store.Plant;
 import store.Product;
 import store.Item;
-import store.Order;;
+import store.Order;
+
+import java.util.Scanner;
+
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.IOException;
 
 public class Controller
 {
@@ -54,7 +60,6 @@ public class Controller
                 selection = selectFromMenu();
                 output = "";
                 if(selection == null) continue;
-                if(selection == -1) testData();
                 else mainMenu.run(selection);
             } 
             catch(Exception e) 
@@ -65,6 +70,10 @@ public class Controller
             }
         }
     }
+    //FILE methods
+    private void save(){}
+    private void saveAs(){}
+    private void open(){}
 
     private String getView() 
     {
@@ -228,43 +237,7 @@ public class Controller
     }
 
 
-public void testData() 
-{
-    Customer c1 = new Customer("Prof Rice", "george.rice@uta.edu");
-    Customer c2 = new Customer("President Joe Biden", "president@whitehouse.gov");
-    Customer c3 = new Customer("The Late Queen Elizabeth II", "queen@royal.gov.uk");
-    Customer c4 = new Customer("Mark Zuckerberg", "mark.zuckerberg@facebook.com");
-    store.addCustomer(c1);
-    store.addCustomer(c2);
-    store.addCustomer(c3);
-    store.addCustomer(c4);
 
-    Product p1 = new Plant("Cactus Cereus Peruvianus", 4990, Exposure.SUN);
-    Product p2 = new Plant("'White Princess' Philodendron", 5500, Exposure.PARTSUN);
-    Product p3 = new Tool("Bypass Pruners", 2299);
-    Product p4 = new Tool("Large Gardener's Cart", 34900);
-    store.addProduct(p1);
-    store.addProduct(p2);
-    store.addProduct(p3);
-    store.addProduct(p4);
-    
-    int order = store.newOrder(0);
-    store.addToOrder(order, 0, 4);
-    store.addToOrder(order, 1, 3);
-    store.addToOrder(order, 2, 2);
-    store.addToOrder(order, 3, 1);
-/*
-    Item i1 = new Item(p1, 4);
-    Item i2 = new Item(p2, 3);
-    Item i3 = new Item(p3, 2);
-    Item i4 = new Item(p4, 1);
 
-    Order o1 = new Order(c1);
-    o1.addItem(i1);
-    o1.addItem(i2);
-    o1.addItem(i3);
-    o1.addItem(i4);
-    store.addOrder(o1);
-*/
-}
+
 }
