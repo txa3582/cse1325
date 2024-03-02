@@ -26,7 +26,7 @@ public class Store
         StringBuilder customersBuild = new StringBuilder();
         for(int i = 0; i < customers.size(); i++)
         {
-            customersBuild.append(customers.get(i));
+            customersBuild.append(String.format("%3d] %s\n", i, customers.get(i)));
         }
         return customersBuild.toString();
     }   
@@ -39,7 +39,7 @@ public class Store
         StringBuilder productsBuild = new StringBuilder();
         for(int i = 0; i < products.size(); i++)
         {
-            productsBuild.append(products.get(i));
+            productsBuild.append(String.format("%3d] %s\n", i, products.get(i)));
         }
         return productsBuild.toString();
     }
@@ -65,7 +65,7 @@ public class Store
         StringBuilder ordersBuild = new StringBuilder();
         for(int i = 0; i < orders.size(); i++)
         {
-            ordersBuild.append(orders.get(i));
+            ordersBuild.append(String.format("\n%s\n", orders.get(i)));
         }
         return ordersBuild.toString();
     }
