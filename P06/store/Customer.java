@@ -1,5 +1,9 @@
 package store;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+
 /**
  * Holds the name and email of the customer.
  * 
@@ -29,6 +33,21 @@ public class Customer
 		this.name = name;
 
 	}
+
+	public Customer(BufferedReader br) throws IOException
+	{
+		this.name = br.readLine();
+		this.email = br.readLine();
+	}	
+
+	//methods
+
+	public void save (BufferedWriter bw) throws IOException
+	{
+		bw.write(	name + '\n');
+		bw.write(	email + '\n');
+	}
+
 
 	/**
 	 * Converts the name and email to a string.
