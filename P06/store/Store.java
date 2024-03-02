@@ -28,7 +28,7 @@ public class Store
         {
             customersBuild.append(customers.get(i));
         }
-        return "" + customersBuild;
+        return customersBuild.toString();
     }   
     public void addProduct(Product product)
     {
@@ -41,7 +41,7 @@ public class Store
         {
             productsBuild.append(products.get(i));
         }
-        return "" + productsBuild;
+        return productsBuild.toString();
     }
     public int newOrder(int customer)
     {
@@ -67,7 +67,7 @@ public class Store
         {
             ordersBuild.append(orders.get(i));
         }
-        return "" + ordersBuild;
+        return ordersBuild.toString();
     }
 
     // fields

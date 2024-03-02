@@ -1,16 +1,15 @@
 package mdi;
 
-import store.Store;
 import java.util.Scanner;
 
-
-
+import store.Store;
 import store.Customer;
 import store.Exposure;
-
 import store.Tool;
 import store.Plant;
 import store.Product;
+import store.Item;
+import store.Order;;
 
 public class Controller
 {
@@ -19,21 +18,27 @@ public class Controller
     private mdi.View view;
     private Menu mainMenu;
     private String output;
-    private boolean isRunning;
+    private boolean isRunning = true;
     private Scanner in;
 
     public Controller(String storeName)
     {
 
-
+        this.store = new Store(storeName);
+        this.view = View.CUSTOMERS;
+        this.isRunning = true;
+        this.output = "";
+        
+        this.in = new Scanner(System.in);
         // load menuItem instances into menu field / setup main menu
         this.mainMenu = new Menu();
-        mainMenu.addMenuItem(new MenuItem("0] Exit",                    () -> exit()));
-        mainMenu.addMenuItem(new MenuItem("1] Place Order",             () -> placeOrder()));
-        mainMenu.addMenuItem(new MenuItem("2] Welcome New Customer",    () -> newCustomer()));
-        mainMenu.addMenuItem(new MenuItem("3] Define New Tool",         () -> newTool()));
-        mainMenu.addMenuItem(new MenuItem("4] Define New Plant",        () -> newPlant()));
-        mainMenu.addMenuItem(new MenuItem("5] Switch View",             () -> switchView()));
+
+        mainMenu.addMenuItem(new MenuItem(" Exit",                    () -> exit()));
+        mainMenu.addMenuItem(new MenuItem(" Place Order",             () -> placeOrder()));
+        mainMenu.addMenuItem(new MenuItem(" Welcome New Customer",    () -> newCustomer()));
+        mainMenu.addMenuItem(new MenuItem(" Define New Tool",         () -> newTool()));
+        mainMenu.addMenuItem(new MenuItem(" Define New Plant",        () -> newPlant()));
+        mainMenu.addMenuItem(new MenuItem(" Switch View",             () -> switchView()));
 
 
     }
@@ -61,9 +66,29 @@ public class Controller
         }
     }
 
+    private String getView() 
+    {
+        String result = "INVALID VIEW";
+        if(view == mdi.View.CUSTOMERS) result = store.getCustomerList();
+        if(view == mdi.View.PRODUCTS)  result = store.getProductList();
+        if(view == mdi.View.ORDERS)    result = store.getOrderList();
+        return result;
+    }
+
     private void exit()
     {
         isRunning = false;
+    }
+    private static final String clearScreen = "\n".repeat(255);
+    private Integer selectFromMenu() 
+    {
+        System.out.println(clearScreen 
+                         + store.getName() + " Main Menu\n\n" 
+                         + mainMenu + '\n' 
+                         + getView() + '\n'
+                         + output + '\n');
+        output = "";
+        return getInt("Selection? ");
     }
     private void placeOrder() 
     {
@@ -108,13 +133,16 @@ public class Controller
         String name = getString("New Plant's name:  ");
         
         Exposure exposure = null;
-        try {
+        try 
+        {
             System.out.println();
             for(Exposure ex : Exposure.values())
                 System.out.println(ex.ordinal() + "] " + ex);
             int selection = getInt("\nNew Plant's exposure? ");
             exposure = Exposure.values()[selection];
-        } catch(ArrayIndexOutOfBoundsException e) {
+        } 
+        catch(ArrayIndexOutOfBoundsException e) 
+        {
             throw new ArrayIndexOutOfBoundsException("Invalid Exposure");
         }
 
@@ -134,29 +162,14 @@ public class Controller
         view = mdi.View.values()[selection];
         print("Switched view to " + view);
     }
-    private String getView() 
+
+
+    
+   private void print(String s) 
     {
-        String result = "INVALID VIEW";
-        if(view == mdi.View.CUSTOMERS) result = store.getCustomerList();
-        if(view == mdi.View.PRODUCTS)  result = store.getProductList();
-        if(view == mdi.View.ORDERS)    result = store.getOrderList();
-        return result;
-    }
-    private static final String clearScreen = "\n".repeat(255);
-    private Integer selectFromMenu() {
-        System.out.println(clearScreen 
-                         + store.getName() + " Main Menu\n\n" 
-                         + mainMenu + '\n' 
-                         + getView() + '\n'
-                         + output + '\n');
-        output = "";
-        return getInt("Selection? ");
+        output += s + '\n';
     }
     
-    private void print(String s)
-    {
-        output.concat(s);
-    }
     private String getString(String prompt)
     {
         
