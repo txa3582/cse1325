@@ -1,5 +1,9 @@
 package store;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+
 /**
  * Holds the plant type.
  * 
@@ -23,9 +27,20 @@ public class Plant extends Product
     public Plant(String species, int price, Exposure exposure)
     {
         super("Plant: " + species, price);
-
+        
         this.exposure = exposure;
     }
+    public Plant(BufferedReader br) throws IOException
+	{
+		this.species = br.readLine();
+		this.price = Integer.parseInt(br.readLine());
+        this.exposure = 
+	}
+	public void save(BufferedWriter bw) throws IOException
+	{
+		bw.write(	 + '\n');
+		bw.write("" + price + '\n');
+	}
 
     //methods
 

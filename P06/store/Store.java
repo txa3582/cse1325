@@ -28,9 +28,6 @@ public class Store
         {
             System.err.println("Failed to read: " + e);
         }
-        
-
-        
     }
     public void save(BufferedWriter bw) throws IOException
     {

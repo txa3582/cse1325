@@ -1,4 +1,9 @@
 package store;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+
 /**
  * Holds the Product info.
  * 
@@ -27,6 +32,22 @@ public abstract class Product
 
 		this.name = name;
 		this.price = price;
+	}
+	public Product(BufferedReader br) throws IOException
+	{
+		this.name = br.readLine();
+		this.price = Integer.parseInt(br.readLine());
+		this.stockNumber = Integer.parseInt(br.readLine());
+		this.nextStockNumber = Integer.parseInt(br.readLine());
+
+	}
+	public void save(BufferedWriter bw) throws IOException
+	{
+		bw.write(	name + '\n');
+		bw.write("" + price + '\n');
+		bw.write("" + stockNumber + '\n');
+		bw.write("" + nextStockNumber + '\n');
+
 	}
 	/**
 	 * Gets the stock number for that product.
@@ -70,6 +91,7 @@ public abstract class Product
 		String priceFormatted = String.format("$%,.2f", priceConverted);
 		return name + "" + priceFormatted;
 	}
+
 	//fields
 	private static int nextStockNumber = 0;
 	private int stockNumber = 0;
