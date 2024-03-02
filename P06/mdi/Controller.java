@@ -27,8 +27,13 @@ public class Controller
     private boolean isRunning = true;
     private Scanner in;
 
+    private String filename = "Untitled";
+    private Customer customerRecreated = null;
+    private Scanner fileIn = new Scanner(System.in);
+
     public Controller(String storeName)
     {
+        
 
         this.store = new Store(storeName);
         this.view = View.CUSTOMERS;
@@ -45,6 +50,9 @@ public class Controller
         mainMenu.addMenuItem(new MenuItem(" Define New Tool",         () -> newTool()));
         mainMenu.addMenuItem(new MenuItem(" Define New Plant",        () -> newPlant()));
         mainMenu.addMenuItem(new MenuItem(" Switch View",             () -> switchView()));
+        mainMenu.addMenuItem(new MenuItem(" Save",                    () -> save()));
+        mainMenu.addMenuItem(new MenuItem(" Save As",                 () -> saveAs()));
+        mainMenu.addMenuItem(new MenuItem(" Open",                    () -> open()));
 
 
     }
@@ -61,6 +69,7 @@ public class Controller
                 output = "";
                 if(selection == null) continue;
                 else mainMenu.run(selection);
+                
             } 
             catch(Exception e) 
             {
@@ -69,11 +78,48 @@ public class Controller
                 print("#### Error: " + e.getMessage());
             }
         }
+
     }
     //FILE methods
-    private void save(){}
-    private void saveAs(){}
-    private void open(){}
+    private void save()
+    {
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(filename)))
+        {
+            store.save(bw);
+            System.out.println("Wrote customer to " + filename);
+
+        }
+        catch(Exception e)
+        {
+            System.err.println("Failed to save: " + e);
+        }
+    }
+    private void saveAs()
+    {
+        System.out.println("Enter a Customer filename to save: ");
+        String s = in.nextLine();
+        if(s.isEmpty()) return;
+        filename = s;
+        save();
+    }
+    private void open()
+    {
+        System.out.println("Enter a Customer filename to open (Enter for '" +filename + "'): ");
+        String s = in.nextLine();
+        if(!s.isEmpty()) filename = s;
+        try(BufferedReader br = new BufferedReader(new FileReader(filename)))
+        {
+            Store newStore = new Store(br);
+            store = newStore;
+            System.out.println("Opened customerRecreated from " + filename);
+
+        }
+        catch(Exception e)
+        {
+            System.out.println("Failed to read: " + e);
+            customerRecreated = null;
+        }
+    }
 
     private String getView() 
     {

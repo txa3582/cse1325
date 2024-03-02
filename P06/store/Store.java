@@ -19,12 +19,13 @@ public class Store
     {
         int size = Integer.parseInt(br.readLine());
         this.customers = new ArrayList<>();
+
         while(size-- > 0) customers.add(new Customer(br));
     }
     public void save(BufferedWriter bw) throws IOException
     {
         bw.write("" + customers.size() + '\n');
-        for(Customer i : customers) bw.write("" + i + '\n');
+        for(Customer i : customers) i.save(bw);
     }   
     public String getName()
     {
