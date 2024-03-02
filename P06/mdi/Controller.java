@@ -28,8 +28,6 @@ public class Controller
     private Scanner in;
 
     private String filename = "Untitled";
-    private Customer customerRecreated = null;
-    private Scanner fileIn = new Scanner(System.in);
 
     public Controller(String storeName)
     {
@@ -117,7 +115,7 @@ public class Controller
         catch(Exception e)
         {
             System.out.println("Failed to read: " + e);
-            customerRecreated = null;
+            
         }
     }
 
