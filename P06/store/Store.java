@@ -19,10 +19,21 @@ public class Store
     {
         try
         {
-            int size = Integer.parseInt(br.readLine());
+            int sizeC = Integer.parseInt(br.readLine());
             this.customers = new ArrayList<>();
 
-            while(size-- > 0) customers.add(new Customer(br));
+            while(sizeC-- > 0) customers.add(new Customer(br));
+
+            int sizeP = Integer.parseInt(br.readLine());
+            this.products = new ArrayList<>();
+
+            while(sizeP-- > 0)
+            {
+                String type = br.readLine();
+                if(type.contains("Tool")) products.add(new Tool(br));
+                else if(type.contains("Plant")) products.add(new Plant(br));
+                else throw new IOException("Bad product type: " + type);
+            };
         }
         catch(Exception e)
         {
@@ -35,6 +46,15 @@ public class Store
         {
             bw.write("" + customers.size() + '\n');
             for(Customer i : customers) i.save(bw);
+
+
+            bw.write("" + products.size() + '\n');
+            for(Product i : products) 
+            {
+                bw.write(i.getClass().getName() + '\n');
+                i.save(bw);
+            }
+        
         }
         catch(Exception e)
         {

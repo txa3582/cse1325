@@ -84,7 +84,7 @@ public class Controller
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(filename)))
         {
             store.save(bw);
-            System.out.println("Wrote customer to " + filename);
+            System.out.println("Wrote file to " + filename);
 
         }
         catch(Exception e)
@@ -94,7 +94,7 @@ public class Controller
     }
     private void saveAs()
     {
-        System.out.println("Enter a Customer filename to save: ");
+        System.out.println("Enter a filename to save: ");
         String s = in.nextLine();
         if(s.isEmpty()) return;
         filename = s;
@@ -102,20 +102,19 @@ public class Controller
     }
     private void open()
     {
-        System.out.println("Enter a Customer filename to open (Enter for '" +filename + "'): ");
+        System.out.println("Enter a filename to open (Enter for '" +filename + "'): ");
         String s = in.nextLine();
         if(!s.isEmpty()) filename = s;
         try(BufferedReader br = new BufferedReader(new FileReader(filename)))
         {
             Store newStore = new Store(br);
             store = newStore;
-            System.out.println("Opened customerRecreated from " + filename);
+            System.out.println("Opened store from " + filename);
 
         }
         catch(Exception e)
         {
             System.out.println("Failed to read: " + e);
-            
         }
     }
 
@@ -184,6 +183,8 @@ public class Controller
     {
         System.out.println("\nDefining a new Plant\n-------------------\n");
         String name = getString("New Plant's name:  ");
+        double price = getDouble("New Plant's price: ");
+
         
         Exposure exposure = null;
         try 
@@ -199,7 +200,6 @@ public class Controller
             throw new ArrayIndexOutOfBoundsException("Invalid Exposure");
         }
 
-        double price = getDouble("New Plant's price: ");
         Plant plant = new Plant(name, (int) (price * 100), exposure);
         store.addProduct(plant);
         print("Created new Plant: " + plant);
@@ -279,9 +279,6 @@ public class Controller
         }
         return d;
     }
-
-
-
 
 
 }
