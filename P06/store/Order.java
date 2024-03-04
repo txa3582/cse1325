@@ -38,6 +38,8 @@ public class Order
 			this.orderNumber = Integer.parseInt(br.readLine());
 
             int sizeI = Integer.parseInt(br.readLine());
+            this.items = new ArrayList<>();
+            
             while(sizeI-- > 0) items.add(new Item(br));
 
             Customer customerRead = new Customer(br);
