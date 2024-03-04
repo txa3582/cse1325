@@ -47,7 +47,7 @@ public class Customer
 
 	public void save (BufferedWriter bw) throws IOException
 	{
-		bw.write(	name + '\n');
+		bw.write("" + name + '\n');
 		bw.write("" + email + '\n');
 	}
 

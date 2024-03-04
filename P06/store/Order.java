@@ -39,7 +39,7 @@ public class Order
 
             int sizeI = Integer.parseInt(br.readLine());
             this.items = new ArrayList<>();
-            
+
             while(sizeI-- > 0) items.add(new Item(br));
 
             Customer customerRead = new Customer(br);
@@ -47,22 +47,28 @@ public class Order
 		}
 		catch(Exception e)
 		{
-			System.err.println("Failed to read item file." + e);
+			System.err.println("Failed to read: " + e);
 		}
 		
 
 	}
 	public void save(BufferedWriter bw) throws IOException
 	{
-		
-		bw.write(orderNumber + '\n');
-        bw.write("" + items.size() + '\n');
-        for(Item i : items) 
+
+        try
         {
-            bw.write(i.getClass().getName() + '\n');
-            i.save(bw);
+            bw.write("" + orderNumber + '\n');
+            bw.write("" + items.size() + '\n');
+            for(Item i : items) 
+            {
+                i.save(bw);
+            }
+            customer.save(bw);
         }
-		customer.save(bw);
+        catch(Exception e)
+        {
+            System.err.println("Failed to save: " + e);
+        }
 
 	}
     //methods

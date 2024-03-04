@@ -38,6 +38,12 @@ public class Store
                 else if(type.contains("Plant")) products.add(new Plant(br));
                 else throw new IOException("Bad product type: " + type);
             };
+            
+            int sizeO = Integer.parseInt(br.readLine());
+            this.orders = new ArrayList<>();
+
+            while(sizeO-- > 0) orders.add(new Order(br));
+
         }
         catch(Exception e)
         {
@@ -56,6 +62,12 @@ public class Store
             for(Product i : products) 
             {
                 bw.write(i.getClass().getName() + '\n');
+                i.save(bw);
+            }
+
+            bw.write("" + orders.size() + '\n');
+            for(Order i : orders) 
+            {
                 i.save(bw);
             }
 

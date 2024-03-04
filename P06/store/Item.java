@@ -36,17 +36,17 @@ public class Item
 		try
 		{
 			this.subClass = br.readLine();
-			if(subClass.equals("store.Tool")) 
+			if(subClass.contains("Tool")) 
 			{
 				Tool tool = new Tool(br);
 				this.product = tool;
 			}
-			else if(subClass.equals("store.Plant")) 
+			else if(subClass.contains("Plant")) 
 			{
 				Plant plant = new Plant(br);
 				this.product = plant;
 			}
-
+			else throw new IOException("Bad subClass type: " + subClass);
 			this.quantity = Integer.parseInt(br.readLine());
 		}
 		catch(Exception e)
@@ -58,10 +58,16 @@ public class Item
 	}
 	public void save(BufferedWriter bw) throws IOException
 	{
-		
-		bw.write(product.getClass().getName());
-		bw.write("" + quantity + '\n');
-
+		try
+		{
+			bw.write(product.getClass().getName() + '\n');
+			product.save(bw);
+			bw.write("" + quantity + '\n');
+		}
+        catch(Exception e)
+        {
+            System.err.println("Failed to save: " + e);
+        }
 	}
 	/**
 	 * Gets the price of item times the quantity ordered.
