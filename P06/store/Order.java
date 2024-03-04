@@ -1,5 +1,11 @@
+// Copyright 2024 by Thomas Anderson
+// This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
 package store;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -25,6 +31,38 @@ public class Order
         this.items = new ArrayList<>();
         this.customer = customer;
     }
+    public Order(BufferedReader br) throws IOException
+	{
+		try
+		{
+			this.orderNumber = Integer.parseInt(br.readLine());
+
+            int sizeI = Integer.parseInt(br.readLine());
+            while(sizeI-- > 0) items.add(new Item(br));
+
+            Customer customerRead = new Customer(br);
+            this.customer = customerRead;
+		}
+		catch(Exception e)
+		{
+			System.err.println("Failed to read item file." + e);
+		}
+		
+
+	}
+	public void save(BufferedWriter bw) throws IOException
+	{
+		
+		bw.write(orderNumber + '\n');
+        bw.write("" + items.size() + '\n');
+        for(Item i : items) 
+        {
+            bw.write(i.getClass().getName() + '\n');
+            i.save(bw);
+        }
+		customer.save(bw);
+
+	}
     //methods
     /**
      * Appends item to the ArrayList Items.

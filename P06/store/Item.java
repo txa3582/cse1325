@@ -1,4 +1,11 @@
+// Copyright 2024 by Thomas Anderson
+// This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
 package store;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
 
 /**
  * Holds the product and the quantity of said product.
@@ -23,6 +30,38 @@ public class Item
 		this.product = product;
 		this.quantity = quantity;
 		
+	}
+	public Item(BufferedReader br) throws IOException
+	{
+		try
+		{
+			this.subClass = br.readLine();
+			if(subClass.equals("store.Tool")) 
+			{
+				Tool tool = new Tool(br);
+				this.product = tool;
+			}
+			else if(subClass.equals("store.Plant")) 
+			{
+				Plant plant = new Plant(br);
+				this.product = plant;
+			}
+
+			this.quantity = Integer.parseInt(br.readLine());
+		}
+		catch(Exception e)
+		{
+			System.err.println("Failed to read item file." + e);
+		}
+		
+
+	}
+	public void save(BufferedWriter bw) throws IOException
+	{
+		
+		bw.write(product.getClass().getName());
+		bw.write("" + quantity + '\n');
+
 	}
 	/**
 	 * Gets the price of item times the quantity ordered.
@@ -54,5 +93,6 @@ public class Item
 	//fields
 	private Product product;
 	private int quantity;
+	private String subClass;
 	
 }
