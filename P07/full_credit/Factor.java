@@ -53,6 +53,7 @@ public class Factor {
     public static List<PrimeFactors> solutions = new ArrayList<>();
     public static String[] bigints = null; // From main's args
     public static int numThreads = 1; 
+    private static int subRange = 0;
 
     public static void main(String[] args) {
         // Validate program arguments
@@ -62,7 +63,12 @@ public class Factor {
         try {
             numThreads = Integer.parseInt(args[0]);
             bigints = Arrays.copyOfRange(args, 1, args.length);
-
+            int numOfIntsPerThread = bigints.length/numThreads;
+            for(int i = 0; i < numThreads; i++)
+            {
+                new Thread(()-> solve(numThreads,subRange,subRange + numOfIntsPerThread));
+                subRange = subRange + numOfIntsPerThread;
+            }
         } catch(NumberFormatException e) {
             numThreads = 1;
             bigints = args;
