@@ -27,6 +27,19 @@ int main(int argc, char* argv[])
         }
         
     }
+
+    std::cout << "Odd lengths: "<< std::endl;
+
+    for (int i = 0; i < odds.size() ; i++)
+    {
+        std::cout << odds[i] << std::endl;
+    }
+    std::cout << "\n"<< std::endl;
+    std::cout << "Even lengths: "<< std::endl;
+    for (int i = 0; i < evens->size(); i++)
+    {
+        std::cout << (*evens)[i] << std::endl;
+    }
     
     return 0;
 }
