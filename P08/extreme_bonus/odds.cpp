@@ -12,7 +12,7 @@ int main(int argc, char* argv[])
     std::vector<std::string>* evens = new std::vector<std::string>;
 
     int len = 0;
-    std::string word;
+    std::string word;  
     for (int i = 1; i < argc; i++)
     {
         word = argv[i];
@@ -28,15 +28,17 @@ int main(int argc, char* argv[])
         }
         
     }
+    std::sort(odds.begin(), odds.end());
+    std::sort()
 
-    std::cout << "Odd lengths: "<< std::endl;
+    std::cout << "Odd lengths(Sorted): "<< std::endl;
 
     for (int i = 0; i < odds.size() ; i++)
     {
         std::cout << odds[i] << std::endl;
     }
     std::cout << "\n"<< std::endl;
-    std::cout << "Even lengths: "<< std::endl;
+    std::cout << "Even lengths(Sorted): "<< std::endl;
     for (int i = 0; i < evens->size(); i++)
     {
         std::cout << (*evens)[i] << std::endl;
