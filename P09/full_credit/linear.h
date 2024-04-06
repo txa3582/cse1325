@@ -1,14 +1,15 @@
 #ifndef __LINEAR_H
 #define __LINEAR_H
-#include <iostream>
-#include "polynomial.h"
 
-class Linear : virtual Polynomial
+#include "linear.h"
+#include "Polynomial.h"
+
+class Linear : virtual public Polynomial
 {
     public:
-        Linear(double coefficents);
-        virtual ~Linear(){}
-
+        Linear(std::vector<double>& coefficents);
+        virtual ~Linear();
 };
+
 
 #endif
