@@ -6,14 +6,15 @@
 
 class Polynomial
 {
-    double a,b,c;
     protected: 
+        double a, b, c;
         std::vector<double> _coefficents = {a, b, c};
 
     public:
-        Polynomial(double coefficents);
+        
+        Polynomial(std::vector<double>& coefficents);
         virtual ~Polynomial(){} 
-        virtual double* solve() = 0;
+        virtual double solve() = 0;
 };
 
 #endif
