@@ -1,10 +1,8 @@
 #include <iostream>
 
-class Solver
+
+int main(int argc, int argv, char*[])
 {
-    public: 
-    int main(int argc, int argv, char*[])
-    {
-        
-    }
-};
+    
+    return 0;
+}
