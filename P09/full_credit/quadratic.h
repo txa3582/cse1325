@@ -1,14 +1,12 @@
-#ifndef __QUADRATRIC_H
-#define __QUADRATRIC_H
+#ifndef __QUADRATIC_H
+#define __QUADRATIC_H
 
-#include <iostream>
 #include "polynomial.h"
 
 class Quadratic : virtual public Polynomial
 {
     public:
-        Quadratic(std::vector<double>& coefficents);
-        virtual ~Quadratic();
+        Quadratic(std::vector<double> coefficents);
         virtual double solve() override;
 };
 
