@@ -8,16 +8,17 @@ int main(int argc, char* argv[])
         std::cerr << "Invalid polynomial size - must be linear or quadratic" << std::endl;
         exit(-1);
     }
+    
+    std::vector<double> linearv = {1.0,2.0};
+    Linear linear(linearv);
 
-    Polynomial* p;
+    Polynomial* p = &linear; 
 
-    p->solve();
     if(argc == 3)
     {
         double c1 = std::stod(argv[1]);
         double c2 = std::stod(argv[2]);
         std::vector<double> linearCoefficents = {c1,c2};
-        
         p = new Linear(linearCoefficents);
     }
     if(argc == 4)
@@ -31,9 +32,11 @@ int main(int argc, char* argv[])
     }
 
     std::vector<double> roots = p->solve();
+    std::cout << "Root(s) are ";
     for (int i: roots)
     {
-        std::cout << i << std::endl;
+        std::cout << i;
+        std::cout << " ";
     }
     
     delete p;

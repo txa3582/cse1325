@@ -7,14 +7,13 @@
 class Polynomial
 {
     protected: 
-        double a, b, c;
-        std::vector<double> _coefficents = {a, b, c};
+        std::vector<double> _coefficents;
 
     public:
         
         Polynomial(std::vector<double>& coefficents);
         virtual ~Polynomial(){};
-        virtual double solve() = 0;
+        virtual std::vector<double> solve() = 0;
 };
 
 #endif

@@ -5,9 +5,10 @@
 
 class Linear : virtual public Polynomial
 {
+    
     public:
         Linear(std::vector<double>& coefficents);
-        virtual double solve() override;
+        virtual std::vector<double> solve() override;
 };
 
 
