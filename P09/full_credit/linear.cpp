@@ -1,5 +1,4 @@
 #include "linear.h"
-#include "polynomial.h"
 
 
 Linear::Linear(std::vector<double>& coefficents)
