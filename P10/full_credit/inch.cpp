@@ -64,3 +64,4 @@ void Inch::validate()
     _denominator /= GCD;
 
 }
+
