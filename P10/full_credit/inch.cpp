@@ -19,21 +19,30 @@ Inch Inch::operator+(const Inch& rhs)
     return result;
 }
 
-std::ostream& operator<<(std::ostream& ost, const Inch& rhs)
+std::ostream& operator<<(std::ostream& ost, const Inch& inch)
 {
-    ost << rhs._whole," ", rhs._numerator,"/", rhs._denominator;
+    ost << inch._whole << " " << inch._numerator << "/" << inch._denominator;
     return ost;
 }
 
-std::istream& operator>>(std::istream& ist, Inch& rhs)
+std::istream& operator>>(std::istream& ist, Inch& inch)
 {
     int whole = 0;
     int numerator = 0;
     int denominator = 0;
     char div = ' ';
     ist >> whole >> numerator >> div >> denominator;
-    validate(ist);
+    void validate();
     return ist;
 }
 
+const int Inch::compare(const Inch& rhs)
+{
+    double inch1 = static_cast<double>(*this);
+    double inch2 = static_cast<double>(rhs);
+
+    if (inch1 < inch2) return -1;
+    if (inch1 > inch2) return 1;
+    return 0;
+}
 
