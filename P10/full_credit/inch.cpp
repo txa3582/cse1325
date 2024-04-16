@@ -1,6 +1,7 @@
 #include "inch.h"
 #include <numeric>
 
+
 Inch::Inch(int whole, int numerator, int denominator)
 :   _whole{whole}, _numerator{numerator}, _denominator{denominator}
 {
@@ -14,10 +15,11 @@ Inch Inch::operator+(const Inch& rhs)
     int numerator = ((rhs._numerator * 64)/rhs._denominator) + ((this->_numerator * 64)/this->_denominator);
     int whole = rhs._whole + this->_whole;
 
-    Inch* resultptr = new Inch(whole,numerator,64);
-    Inch result = *resultptr;
+    Inch result(whole,numerator,64);
     return result;
 }
+
+
 
 std::ostream& operator<<(std::ostream& ost, const Inch& inch)
 {
@@ -65,4 +67,5 @@ void Inch::validate()
     _denominator /= GCD;
 
 }
+
 
