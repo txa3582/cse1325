@@ -1,15 +1,24 @@
 #include "inch.h"
-
+#include <fstream>
 Inch in, last_in, sum;
 
 
-int main()
+int main(int argc, char* argv[])
 {
 
     std::cout << "Starting sum is " << sum <<", last entry was " << last_in;
     while (std::cin)
     {
-       
+        // read file
+        std::ifstream ist{std::string{argv[1]}};
+        if(!ist) throw std::runtime_error{"can't open input file"};
+
+        std::string s;
+        while(std::getline(ist, s)) std::cout << s << std::endl;
+
+        
+        std::ofstream ofs {std::string{argv[1]}};
+
         std::cout << "\n" << std::endl;
         std::cout << "Enter one or more measurements (in inches): ";
         std::cin >> in;
