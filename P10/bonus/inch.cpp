@@ -48,7 +48,7 @@ const int Inch::compare(const Inch& rhs)
 
 void Inch::validate()
 {
-    if (_denominator != 2 && _denominator != 4 && _denominator != 8 && _denominator != 16 && _denominator != 32 && _denominator != 64)
+    if (_denominator != 1 &&_denominator != 2 && _denominator != 4 && _denominator != 8 && _denominator != 16 && _denominator != 32 && _denominator != 64)
     {
         throw std::invalid_argument("Denominator must be 2, 4, 8, 16, 32, or 64");
     }
