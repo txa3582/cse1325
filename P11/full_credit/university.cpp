@@ -20,3 +20,12 @@ std::ostream& operator<<(std::ostream& ost, const University& reading)
     ost << reading._name << " " << " has enrollement of " << reading._enrollment;
     return ost;
 }
+
+void University::validate()
+{
+    if (_enrollment == 0)
+    {
+        throw std::invalid_argument("University cannot be anonymous");
+    }
+    
+}
