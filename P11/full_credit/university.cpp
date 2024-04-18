@@ -1,6 +1,4 @@
 #include "university.h"
-#include <fstream>
-
 University::University(std::string name, int enrollment)
 : _name{name}, _enrollment{enrollment}
 {
@@ -20,7 +18,6 @@ const int University::enrollment()
 std::istream& operator>>(std::istream& ist, University& reading)
 {
     std::string name = "";
-    std::getline(ist, name);
     int enrollment = 0;
     if (ist >> name >> enrollment) reading = University{name,enrollment};
     void validate();

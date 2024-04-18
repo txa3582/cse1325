@@ -2,6 +2,7 @@
 #include <fstream>
 #include <vector>
 #include <map>
+#include <string>
 
 typedef std::string State; 
 typedef std::vector<University> Universities; 
@@ -20,8 +21,25 @@ int main(int argc, char* argv[])
         throw std::runtime_error{"can't open input file"};
         return -2;
     } 
-
-
     
+    State state;
+    University university("", 0);
+    std::map<State, Universities> m;
+    while (!ist.eof())
+    {
+        ist >> state, university;
+
+        if (m.find(state) == m.end())
+        {
+            // m[state] = ;
+        }
+        // universities.push_back();
+    }
+    while (std::cin)
+    {
+        std::cout << "Enter a 2 character abbreviation for the state" << std::endl;
+    }
+    
+
     return 0;
 }
