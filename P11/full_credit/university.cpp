@@ -1,11 +1,20 @@
 #include "university.h"
 
-University::University(std::string _name, int _enrollment)
+University::University(std::string name, int enrollment)
+: _name{name}, _enrollment{enrollment}
 {
-
+    name = "";
+    enrollment = 0;
 }
 
-
+const std::string University::name()
+{
+    return _name;
+}
+const int University::enrollment()
+{  
+    return _enrollment;
+}
 std::istream& operator>>(std::istream& ist, University& reading)
 {
     std::string name = "";
