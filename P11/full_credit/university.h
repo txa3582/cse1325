@@ -8,7 +8,7 @@ class University
         int _enrollment;
 
     public:
-        University(std::string _name, int _enrollment);
+        University(std::string _name = "", int _enrollment = 0);
         const std::string name();
         const int enrollment();
 

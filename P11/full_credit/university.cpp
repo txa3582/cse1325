@@ -1,11 +1,6 @@
 #include "university.h"
 University::University(std::string name, int enrollment)
-: _name{name}, _enrollment{enrollment}
-{
-    name = "";
-    enrollment = 0;
-    validate();
-}
+: _name{name}, _enrollment{enrollment}{}
 
 const std::string University::name()
 {
@@ -17,9 +12,9 @@ const int University::enrollment()
 }
 std::istream& operator>>(std::istream& ist, University& reading)
 {
-    std::string name = "";
-    int enrollment = 0;
-    if (ist >> name >> enrollment) reading = University{name,enrollment};
+    std::getline(ist, reading._name);
+    ist >> reading._enrollment;
+    ist >> std::ws;
     void validate();
     return ist;
 }
@@ -36,7 +31,7 @@ void University::validate()
     {
         throw std::invalid_argument("University enrollment cannot be negative");
     }
-    if (_enrollment > 0 && name == 0)
+    if ((_enrollment > 0) && (_name.length() == 0))
     {
         throw std::invalid_argument("University cannot be anonymous");
     }

@@ -3,6 +3,7 @@
 #include <vector>
 #include <map>
 #include <string>
+#include <sstream>
 
 typedef std::string State; 
 typedef std::vector<University> Universities; 
@@ -23,23 +24,41 @@ int main(int argc, char* argv[])
     } 
     
     State state;
-    University university("", 0);
+    University university;
     std::map<State, Universities> m;
     while (!ist.eof())
     {
-        ist >> state, university;
+        std::getline(ist, state);
+        ist >> university;
 
         if (m.find(state) == m.end())
         {
-            // m[state] = ;
+            m[state] = Universities();
         }
-        // universities.push_back();
+        m[state].push_back(university);
     }
     while (std::cin)
     {
+        std::cout << "\n" << std::endl;   
         std::cout << "Enter a 2 character abbreviation for the state" << std::endl;
+        if (!std::cin)
+        {
+            break;
+        }
+        std::cin >> state;
+
+        auto it = m.find(state);
+        if (it == m.end())
+        {
+            std::cout << "No universities found in " << state << std::endl;
+            break;
+        }
+        for(const auto& universities : it->second) std::cout << universities << std::endl;
     }
+        
     
 
-    return 0;
+
+    
+
 }
