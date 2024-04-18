@@ -13,7 +13,7 @@ class University
         const int enrollment();
 
         friend std::istream& operator>>(std::istream& ist, University& reading);
-        friend std::ostream& operator<<(std::ostream& ist, const University& reading);
+        friend std::ostream& operator<<(std::ostream& ost, const University& reading);
     private:
         void validate();
 };
