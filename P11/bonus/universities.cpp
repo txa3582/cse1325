@@ -8,6 +8,17 @@
 typedef std::string State; 
 typedef std::vector<University> Universities; 
 
+template<class T, class U>
+std::ostream& operator<<(std::ostream& ost, const std::pair<T,U>& p) {
+    return ost << "[" << p.first << "," << p.second << "]";
+}
+
+template<class T, class U>
+void print_container(const T& t)
+{
+    typedef Universities it = t.begin();
+    for(const auto& universities : it->second) std::cout << universities << std::endl;
+}
 int main(int argc, char* argv[])
 {
     if (argc != 2)
@@ -46,7 +57,8 @@ int main(int argc, char* argv[])
             break;
         }
         std::cin >> state;
-
+        print_container(m);
+        
         auto it = m.find(state);
         if (it == m.end())
         {
@@ -56,8 +68,6 @@ int main(int argc, char* argv[])
         for(const auto& universities : it->second) std::cout << universities << std::endl;
     }
         
-    
-
 
     
 
