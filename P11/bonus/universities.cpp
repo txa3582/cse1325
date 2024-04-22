@@ -14,11 +14,17 @@ std::ostream& operator<<(std::ostream& ost, const std::pair<T,U>& p) {
 }
 
 template<class T, class U>
-void print_container(const T& t)
+void print_container(const std::map<T, U>& M, const std::string& V)
 {
-    typedef Universities it = t.begin();
-    for(const auto& universities : it->second) std::cout << universities << std::endl;
+    typename std::map<T, U>::const_iterator it = M.find(V);
+    if (it == M.end())
+    {
+        std::cout << "No " << typeid(T).name() <<" found in " << V << std::endl;
+        exit(1);
+    }
+    for(const auto& u : it->second) std::cout << u << std::endl;
 }
+
 int main(int argc, char* argv[])
 {
     if (argc != 2)
@@ -57,7 +63,7 @@ int main(int argc, char* argv[])
             break;
         }
         std::cin >> state;
-        print_container(m);
+        print_container(m, state);
         
         auto it = m.find(state);
         if (it == m.end())
