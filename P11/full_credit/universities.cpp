@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
     while (std::cin)
     {
         std::cout << "\n" << std::endl;   
-        std::cout << "Enter a 2 character abbreviation for the state" << std::endl;
+        std::cout << "Enter a 2 character abbreviation for the state: ";
         if (!std::cin)
         {
             break;

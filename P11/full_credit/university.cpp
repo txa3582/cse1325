@@ -2,14 +2,7 @@
 University::University(std::string name, int enrollment)
 : _name{name}, _enrollment{enrollment}{}
 
-const std::string University::name()
-{
-    return _name;
-}
-const int University::enrollment()
-{  
-    return _enrollment;
-}
+
 std::istream& operator>>(std::istream& ist, University& reading)
 {
     std::getline(ist, reading._name);
